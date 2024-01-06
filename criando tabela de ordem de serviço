@@ -1,0 +1,30 @@
+create table ordemServico(
+os int primary key auto_increment,
+data_os timestamp default current_timestamp, 
+equipamento varchar(150) not null,
+defeito varchar (300) not null, 
+servico varchar(150),
+tecnico varchar(30) not null,
+valor decimal(10, 2),
+idcliente int not null,
+foreign key(idcliente) references Clientes(idcliente)
+);
+
+-- Verificando visualmente a tabela
+describe ordemServico;
+
+-- Visualizando os campos da tabela
+select * from ordemservico;
+
+-- Inserindo dados na tabela
+insert into ordemservico(equipamento, defeito, servico, tecnico, valor, idcliente)
+values('Notebook', 'não liga', 'ressolda', 'Carlos Coutinho', '300.00', 1);
+
+-- Criando um select especial para
+-- Trazer informações de duas tabelas, criando uma variável
+select
+O.os, equipamento, defeito, servico, valor, 
+C.nomecliente, fonecliente
+from ordemservico as O
+inner join Clientes as C
+on (O.idcliente = C.idcliente);
